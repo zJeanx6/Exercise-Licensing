@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $pdo = $conex->conectar();
 
         // Eliminar registros relacionados en detalle_receta
-        $stmtDetalle = $pdo->prepare("DELETE FROM detalle_receta WHERE id_ingrediente = ?");
+        $stmtDetalle = $pdo->prepare("DELETE FROM detalle_recetas WHERE id_ingrediente = ?");
         $stmtDetalle->execute([$id]);
 
         // Eliminar ingrediente

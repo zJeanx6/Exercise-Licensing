@@ -16,7 +16,7 @@ $recetas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body class="flex">
   <?php include '../../partials/sidebar.php'; ?>
-  
+
   <div id="overlay"
     class="fixed inset-0 bg-[rgba(0,0,0,0.4)] z-30 hidden md:hidden"
     onclick="toggleSidebar()">
@@ -51,13 +51,13 @@ $recetas = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <td class="px-4 py-2">
                 <div class="inline-flex rounded-md shadow-sm" role="group">
                   <a href="<?= BASE_URL ?>views/recetas/editar.php?id=<?= $receta['id'] ?>"
-                     class="px-4 py-2 text-sm font-medium text-white bg-gray-800 border border-gray-800 rounded-l-lg hover:bg-gray-900">
+                    class="px-4 py-2 text-sm font-medium text-white bg-gray-800 border border-gray-800 rounded-l-lg hover:bg-gray-900">
                     Editar
                   </a>
                   <form action="<?= BASE_URL ?>views/recetas/eliminar.php" method="POST" class="inline">
                     <input type="hidden" name="id" value="<?= $receta['id'] ?>">
                     <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-red-500 border border-red-500 rounded-r-lg hover:bg-red-600">
+                      class="px-4 py-2 text-sm font-medium text-white bg-red-500 border border-red-500 rounded-r-lg hover:bg-red-600">
                       Eliminar
                     </button>
                   </form>

@@ -11,8 +11,6 @@
   </div>
   <nav class="flex-1 px-4 py-6 space-y-3 text-sm">
     <a href="<?= BASE_URL ?>views/dashboard.php" class="block px-3 py-2 rounded hover:bg-gray-700">Dashboard</a>
-    <a href="<?= BASE_URL ?>views/recetas/index.php" class="block px-3 py-2 rounded hover:bg-gray-700">Recetas</a>
-    <a href="<?= BASE_URL ?>views/ingredientes/index.php" class="block px-3 py-2 rounded hover:bg-gray-700">Ingredientes</a>
     <a href="<?= BASE_URL ?>views/licencias/index.php" class="block px-3 py-2 rounded hover:bg-gray-700">Licencias</a>
   </nav>
   <!-- Botón de Cerrar Sesión -->

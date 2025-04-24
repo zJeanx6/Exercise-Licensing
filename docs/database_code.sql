@@ -40,9 +40,7 @@ CREATE TABLE usuarios (
   nombre VARCHAR(100) NOT NULL,
   correo VARCHAR(100) UNIQUE NOT NULL,
   nit_empresa VARCHAR(20),
-  estado_id INT,
   contraseña VARCHAR(500) NOT NULL,
-  FOREIGN KEY (estado_id) REFERENCES estados(id),
   FOREIGN KEY (nit_empresa) REFERENCES empresas(nit)
 );
 

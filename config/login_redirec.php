@@ -21,22 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // 1. Buscar en ADMIN
-    $stmt = $pdo->prepare("SELECT * FROM admin WHERE correo = ?");
-    $stmt->execute([$correo]);
-    $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($admin && password_verify($password, $admin['contraseña'])) {
-        $_SESSION['user'] = [
-            'tipo' => 'admin',
-            'cedula' => $admin['cedula'],
-            'nombre' => $admin['nombre']
-        ];
-        header("Location: ../views/dashboard.php");
-        exit;
-    }
-
-    // 2. Buscar en USUARIOS
     $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE correo = ?");
     $stmt->execute([$correo]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -46,11 +30,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'tipo' => 'usuario',
             'cedula' => $usuario['cedula'],
             'nombre' => $usuario['nombre'],
-            'estado' => $usuario['id_estado']
+            'rol_id' => $usuario['rol_id'],
         ];
-        header("Location: ../views/dashboard.php");
+    
+        // Redirección según el rol  
+        switch ($usuario['rol_id']) {
+            case 2:
+                header("Location: ../views/admin/dashboard.php");
+                break;
+            case 3:
+                header("Location: ../views/empleado/dashboard.php");
+                break;
+            default:
+                // Si el rol no es reconocido, lo mandamos al index
+                header("Location: ../index.html");
+                break;
+        }
         exit;
-    } 
+    }    
     
     else {
         echo '<script>alert("Correo o contraseña incorrecta")</script>';
