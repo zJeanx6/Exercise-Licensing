@@ -74,6 +74,6 @@ CREATE TABLE detalle_recetas (
   id_ingrediente INT,
   cantidad DECIMAL(10,2) NOT NULL,
   unidad_medida VARCHAR(50) NOT NULL,
-  FOREIGN KEY (id_receta) REFERENCES recetas(id),
+  FOREIGN KEY (id_receta) REFERENCES recetas(id) ON DELETE CASCADE,
   FOREIGN KEY (id_ingrediente) REFERENCES ingredientes(id)
 );

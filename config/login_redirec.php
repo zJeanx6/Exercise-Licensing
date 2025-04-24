@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'cedula' => $admin['cedula'],
             'nombre' => $admin['nombre']
         ];
-        header("Location: ../dashboard.php");
+        header("Location: ../views/dashboard.php");
         exit;
     }
 
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'nombre' => $usuario['nombre'],
             'estado' => $usuario['id_estado']
         ];
-        header("Location: ../dashboard.php");
+        header("Location: ../views/dashboard.php");
         exit;
     } 
     

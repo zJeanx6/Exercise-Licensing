@@ -5,10 +5,10 @@ $pdo = $conex->conectar();
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $cedula = $_POST['cedula'] ?? '';
-    $nombre = $_POST['nombre'] ?? '';
-    $correo = $_POST['correo'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $cedula = $_POST['cedula'];
+    $nombre = $_POST['nombre'];
+    $correo = $_POST['correo'];
+    $password = $_POST['password'];
 
     // Validar campos vacíos
     if ($cedula === '' || $nombre === '' || $correo === '' || $password === '') {
