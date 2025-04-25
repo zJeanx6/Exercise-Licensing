@@ -1,9 +1,10 @@
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-04-2025 a las 12:35:19
+-- Tiempo de generación: 25-04-2025 a las 17:08:03
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +21,18 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `licencias`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_receta`
+--
+
+CREATE TABLE `detalle_receta` (
+  `id` int(11) NOT NULL,
+  `id_receta` int(11) NOT NULL,
+  `id_ingrediente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -93,24 +106,32 @@ INSERT INTO `estados` (`id`, `nombre`) VALUES
 
 CREATE TABLE `ingredientes` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL
+  `nombre` varchar(100) NOT NULL,
+  `codigo_barras` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `ingredientes`
 --
 
-INSERT INTO `ingredientes` (`id`, `nombre`) VALUES
-(1, 'Harina de trigo'),
-(2, 'Leche entera'),
-(3, 'Huevo'),
-(4, 'Azúcar blanca'),
-(5, 'Sal'),
-(6, 'Polvo de hornear'),
-(7, 'Mantequilla'),
-(8, 'Aceite vegetal'),
-(9, 'Queso rallado'),
-(10, 'Chocolate negro');
+INSERT INTO `ingredientes` (`id`, `nombre`, `codigo_barras`) VALUES
+(24, 'Cebolla larga', 'INGRE-YNA0024'),
+(25, 'Queso', 'INGRE-IDG0025'),
+(26, 'Huevos', 'INGRE-JGK0026'),
+(27, 'Tomate', 'INGRE-BEF0027'),
+(28, 'Leche', 'INGRE-GZJ0028'),
+(29, 'Masamorra', 'AOQEUQWOHD1'),
+(30, 'Huevos pericos', 'INGRE-CWB0030'),
+(31, 'Masapan', 'INGRE-ZIY0031'),
+(32, 'Migajas', 'as'),
+(33, 'tomatico', 'aadsdasdasd'),
+(34, 'tomatote', 'INGRE-PVF0034'),
+(36, 'ajitomate', 'INGRE-YXW0036'),
+(37, 'Cargador', 'KP135010082030120FP103'),
+(38, 'Corrector', '7703336004959'),
+(39, 'Celular de Aranda', '864469068846700'),
+(40, 'MovilRed Scanner', '1107192821'),
+(41, 'Portátil Jean', '922610128222');
 
 -- --------------------------------------------------------
 
@@ -145,6 +166,13 @@ CREATE TABLE `recetas` (
   `nombre` varchar(100) NOT NULL,
   `instrucciones` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `recetas`
+--
+
+INSERT INTO `recetas` (`id`, `nombre`, `instrucciones`) VALUES
+(1, 'Queso melado', 'nadita');
 
 -- --------------------------------------------------------
 
@@ -220,6 +248,14 @@ INSERT INTO `usuarios` (`cedula`, `nombre`, `correo`, `nit_empresa`, `contraseñ
 --
 
 --
+-- Indices de la tabla `detalle_receta`
+--
+ALTER TABLE `detalle_receta`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_receta` (`id_receta`),
+  ADD KEY `id_ingrediente` (`id_ingrediente`);
+
+--
 -- Indices de la tabla `detalle_recetas`
 --
 ALTER TABLE `detalle_recetas`
@@ -243,7 +279,8 @@ ALTER TABLE `estados`
 -- Indices de la tabla `ingredientes`
 --
 ALTER TABLE `ingredientes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `codigo_barras` (`codigo_barras`);
 
 --
 -- Indices de la tabla `licencias`
@@ -286,10 +323,16 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `detalle_receta`
+--
+ALTER TABLE `detalle_receta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `detalle_recetas`
 --
 ALTER TABLE `detalle_recetas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `estados`
@@ -301,13 +344,13 @@ ALTER TABLE `estados`
 -- AUTO_INCREMENT de la tabla `ingredientes`
 --
 ALTER TABLE `ingredientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `recetas`
 --
 ALTER TABLE `recetas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -324,6 +367,13 @@ ALTER TABLE `tipos_licencias`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `detalle_receta`
+--
+ALTER TABLE `detalle_receta`
+  ADD CONSTRAINT `detalle_receta_ibfk_1` FOREIGN KEY (`id_receta`) REFERENCES `recetas` (`id`),
+  ADD CONSTRAINT `detalle_receta_ibfk_2` FOREIGN KEY (`id_ingrediente`) REFERENCES `ingredientes` (`id`);
 
 --
 -- Filtros para la tabla `detalle_recetas`
