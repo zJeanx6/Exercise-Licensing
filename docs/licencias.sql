@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2025 a las 16:58:04
+-- Tiempo de generación: 25-04-2025 a las 12:35:19
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -60,7 +60,7 @@ INSERT INTO `empresas` (`nit`, `nombre`, `direccion`, `telefono`, `correo`) VALU
 ('902345678-2', 'La Cocina de Mamá', 'Cra 6 #34-12, Bucaramanga', '3123456789', 'info@cocinamama.com'),
 ('903456789-3', 'Pizzería El Buen Sabor', 'Calle 13 #9-44, Bogotá', '3204567890', 'pizzas@buenosabor.com'),
 ('904567890-4', 'Jugos Naturales Yupi', 'Av. Nutrición #99-12, Cali', '3019876543', 'ventas@yupi.com'),
-('905678901-5', 'Empanadas del Valle', 'Cra 22 #56-88, Palmira', '3114445566', 'contacto@empvalle.com'),
+('905678901-5', 'Empanadas del Vallee', NULL, NULL, NULL),
 ('906789012-6', 'Arepas Don Pedro', 'Calle 5 #7-33, Cúcuta', '3101112233', 'admin@donpedro.com'),
 ('907890123-7', 'Restaurante Sazón Criollo', 'Av. Gourmet #100-77, Cartagena', '3003334444', 'sazon@criollo.com'),
 ('908901234-8', 'Delicias Express', 'Cra 40 #28-11, Barranquilla', '3225556666', 'info@deliciasexpress.com');
@@ -82,7 +82,8 @@ CREATE TABLE `estados` (
 
 INSERT INTO `estados` (`id`, `nombre`) VALUES
 (1, 'activa'),
-(2, 'expirada');
+(2, 'expirada'),
+(11, 'desactivada');
 
 -- --------------------------------------------------------
 
@@ -125,6 +126,13 @@ CREATE TABLE `licencias` (
   `id_estado` int(11) DEFAULT NULL,
   `id_tipo_licencia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `licencias`
+--
+
+INSERT INTO `licencias` (`licencia`, `nit_empresa`, `fecha_compra`, `fecha_fin`, `id_estado`, `id_tipo_licencia`) VALUES
+('2E37-42DE-D44E-44A9-9242', '900123456-1', '2025-04-24', '2025-05-25', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -181,7 +189,7 @@ INSERT INTO `tipos_licencias` (`id`, `nombre`, `duracion`, `precio`) VALUES
 (3, 'Trimestral', 90, 40000.00),
 (4, 'Semestral', 180, 70000.00),
 (5, 'Anual', 365, 120000.00),
-(7, 'Permanente', 0, 250000.00);
+(8, 'Permanente', 0, 0.00);
 
 -- --------------------------------------------------------
 
@@ -203,7 +211,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`cedula`, `nombre`, `correo`, `nit_empresa`, `contraseña`, `rol_id`) VALUES
-('1095305', 'admin Jean', 'admin@gmail.com', NULL, '$2y$10$nxXfY5VzPYsuRimEi2rvNO2.b9JpxEiqFd0AjTJ2eoubN36hfDb02', 1);
+('1095300640', 'stiven', 'stiven@gmail.com', '900123456-1', '$2y$10$I4FlDsNlHNaBneKuG.db/uPn1KvNeNh2GCDaU1OcFwSzbZ.9RyfaS', 2),
+('1095305', 'admin Jean', 'admin@gmail.com', NULL, '$2y$10$nxXfY5VzPYsuRimEi2rvNO2.b9JpxEiqFd0AjTJ2eoubN36hfDb02', 1),
+('111', 'empleado', 'empleado@gmail.com', '900123456-1', '$2y$10$7HkBK2eslb5uAg4Ea9UR9eTI/RdbQjYRMF6kKBKM8D7KFPoQ5CbHm', 3);
 
 --
 -- Índices para tablas volcadas
@@ -285,7 +295,7 @@ ALTER TABLE `detalle_recetas`
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `ingredientes`
@@ -309,7 +319,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `tipos_licencias`
 --
 ALTER TABLE `tipos_licencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

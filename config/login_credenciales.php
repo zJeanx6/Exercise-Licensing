@@ -31,11 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
 
         switch ($usuario['rol_id']) {
-            case 2:
-                header("Location: ../views/admin/dashboard.php");
-                break;
-            case 3:
-                header("Location: ../views/empleados/dashboard.php");
+            case 1:
+                header("Location: ../views/superadmin/dashboard.php");
                 break;
             default:
                 header("Location: ../index.html");

@@ -8,8 +8,9 @@
     Recetas App
   </div>
   <nav class="flex-1 px-4 py-6 space-y-3 text-sm">
-    <a href="<?= BASE_URL ?>views/admin/dashboard.php" class="block px-3 py-2 rounded hover:bg-gray-700">Dashboard</a>
-    <a href="<?= BASE_URL ?>views/admin/empleados/index.php" class="block px-3 py-2 rounded hover:bg-gray-700">Empleados</a>
+  <a href="<?= BASE_URL ?>views/empleados/dashboard.php" class="block px-3 py-2 rounded hover:bg-gray-700">Dashboard</a>
+    <a href="<?= BASE_URL ?>views/empleados/ingredientes/index.php" class="block px-3 py-2 rounded hover:bg-gray-700">Ingredientes</a>
+    <a href="<?= BASE_URL ?>views/empleados/recetas/index.php" class="block px-3 py-2 rounded hover:bg-gray-700">Recetas</a>
   </nav>
 
   <div class="px-4 pb-6 mt-auto">
